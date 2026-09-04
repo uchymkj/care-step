@@ -142,3 +142,7 @@ React / Next.jsについても学習していますが、今回のMVPでは労�
 
 今回のMVPでは、社員情報、手続き情報、進捗情報など複数のデータを関連付けて管理する必要があります。
 RailsのActive Recordやデータベース設計について理解を深めながら実装を進めます。
+
+## 11. 画面遷移図
+
+Figma：https://www.figma.com/design/qz96ZcYCEoO8ENQc2K4sUk/%E7%84%A1%E9%A1%8C?node-id=0-1&t=7eZosmyJV0N2A30G-1
