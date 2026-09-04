@@ -146,3 +146,7 @@ RailsのActive Recordやデータベース設計について理解を深めな�
 ## 11. 画面遷移図
 
 Figma：https://www.figma.com/design/qz96ZcYCEoO8ENQc2K4sUk/%E7%84%A1%E9%A1%8C?node-id=0-1&t=7eZosmyJV0N2A30G-1
+
+## 12. ER図
+
+Figma：https://www.figma.com/design/qz96ZcYCEoO8ENQc2K4sUk/%E7%84%A1%E9%A1%8C?node-id=38-2&t=wymEmoeRH2a8BW4S-1
