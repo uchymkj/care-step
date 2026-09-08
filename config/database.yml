@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
-  database: app_production
-  username: app
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  database: <%= ENV["MYSQLDATABASE"] %>
+  username: <%= ENV["MYSQLUSER"] %>
+  password: <%= ENV["MYSQLPASSWORD"] %>
+  host: <%= ENV["MYSQLHOST"] %>
+  port: <%= ENV.fetch("MYSQLPORT", 3306) %>
