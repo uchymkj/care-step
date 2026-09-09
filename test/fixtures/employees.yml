@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  department: one
+  expected_delivery_date: 2026-09-09
+  delivery_date: 2026-09-09
+  maternity_leave_start_date: 2026-09-09
+  maternity_leave_end_date: 2026-09-09
+  childcare_leave_start_date: 2026-09-09
+  childcare_leave_end_date: 2026-09-09
+
+two:
+  name: MyString
+  department: two
+  expected_delivery_date: 2026-09-09
+  delivery_date: 2026-09-09
+  maternity_leave_start_date: 2026-09-09
+  maternity_leave_end_date: 2026-09-09
+  childcare_leave_start_date: 2026-09-09
+  childcare_leave_end_date: 2026-09-09
