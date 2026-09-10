@@ -5,6 +5,6 @@
 
   <div>
     <span><%= current_user.email %></span>
-    <button type="button">ログアウト</button>
+    <%= button_to "ログアウト", logout_path, method: :delete %>
   </div>
 </header>
