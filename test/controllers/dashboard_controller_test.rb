@@ -27,5 +27,9 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
     get dashboard_url
 
     assert_response :success
+    assert_select "header", text: /ケアすてっぷ/
+    assert_select "header", text: /#{@user.email}/
+    assert_select "footer", text: /利用規約/
+    assert_select "footer", text: /プライバシーポリシー/
   end
 end
