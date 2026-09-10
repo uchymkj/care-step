@@ -30,4 +30,18 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
   end
+
+  test "should logout" do
+    post login_url, params: {
+      email: @user.email,
+      password: "password"
+    }
+
+    delete logout_url
+
+    assert_redirected_to root_url
+
+    get dashboard_url
+    assert_redirected_to root_url
+  end
 end
