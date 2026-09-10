@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create" 
   delete "logout", to: "sessions#destroy"
   get "dashboard", to: "dashboard#index"
+  get "terms", to: "static_pages#terms"
+  get "privacy", to: "static_pages#privacy"
 end
