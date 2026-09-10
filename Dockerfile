@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 
+RUN chown -R 1000:1000 /usr/local/bundle
+
 RUN bundle install
 
 COPY . .

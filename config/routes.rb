@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root "sessions#new"
+  post "login", to: "sessions#create" 
+  get "dashboard", to: "dashboard#index"
 end
