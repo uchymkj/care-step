@@ -1,0 +1,22 @@
+<h1>新規社員登録</h1>
+
+<%= form_with model: @employee do |form| %>
+  <div>
+    <%= form.label :name, "氏名" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :department_id, "所属" %>
+    <%= form.collection_select :department_id, Department.all, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :expected_delivery_date, "出産予定日" %>
+    <%= form.date_field :expected_delivery_date %>
+  </div>
+
+  <div>
+    <%= form.submit "登録" %>
+  </div>
+<% end %>
