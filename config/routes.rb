@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get "dashboard", to: "dashboard#index"
   get "terms", to: "static_pages#terms"
   get "privacy", to: "static_pages#privacy"
+
+  resources :employees, only: [:new, :create, :show]
 end
