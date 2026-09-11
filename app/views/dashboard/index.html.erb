@@ -1,2 +1,45 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<h1>社員一覧</h1>
+
+<div>
+  <%= link_to "新規社員登録", new_employee_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>所属</th>
+      <th>出産予定日 / 出産日</th>
+      <th>最新の手続き</th>
+      <th>進捗</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <% latest_procedure = employee.latest_procedure %>
+
+      <tr>
+        <td>
+          <%= link_to employee.name, employee_path(employee) %>
+        </td>
+
+        <td>
+          <%= employee.department.name %>
+        </td>
+
+        <td>
+          <%= employee.delivery_date || employee.expected_delivery_date %>
+        </td>
+
+        <td>
+          <%= latest_procedure&.procedure_type&.name || "未登録" %>
+        </td>
+
+        <td>
+          <%= latest_procedure&.status_label || "未登録" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
