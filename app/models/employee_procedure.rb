@@ -7,4 +7,12 @@ class EmployeeProcedure < ApplicationRecord
     in_progress: 1,
     completed: 2
   }
+
+  def status_label
+    {
+      "not_started" => "未着手",
+      "in_progress" => "対応中",
+      "completed" => "完了"
+    }[status]
+  end
 end
