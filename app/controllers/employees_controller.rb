@@ -21,6 +21,12 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def destroy
+    @employee = Employee.find(params[:id])
+    @employee.destroy
+    redirect_to dashboard_path
+  end
+
   private
 
   def employee_params
