@@ -107,4 +107,19 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_url
   end
+
+  test "should destroy employee" do
+    post login_url, params: {
+      email: @user.email,
+      password: "password"
+    }
+
+    assert_difference("Employee.count", -1) do
+      assert_difference("EmployeeProcedure.count", -1) do
+        delete employee_url(@employee)
+      end
+    end
+
+    assert_redirected_to dashboard_url
+  end
 end
