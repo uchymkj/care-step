@@ -1,5 +1,7 @@
 <h1>社員詳細</h1>
 
+<% latest_procedure = @employee.latest_procedure %>
+
 <p>
   <strong>氏名：</strong>
   <%= @employee.name %>
@@ -12,5 +14,40 @@
 
 <p>
   <strong>出産予定日：</strong>
-  <%= @employee.expected_delivery_date %>
+  <%= @employee.expected_delivery_date || "未登録" %>
 </p>
+
+<p>
+  <strong>出産日：</strong>
+  <%= @employee.delivery_date || "未登録" %>
+</p>
+
+<p>
+  <strong>産前産後休業期間：</strong>
+  <%= @employee.maternity_leave_start_date || "未登録" %>
+  ～
+  <%= @employee.maternity_leave_end_date || "未登録" %>
+</p>
+
+<p>
+  <strong>育児休業期間：</strong>
+  <%= @employee.childcare_leave_start_date || "未登録" %>
+  ～
+  <%= @employee.childcare_leave_end_date || "未登録" %>
+</p>
+
+<p>
+  <strong>最新の手続き：</strong>
+  <%= latest_procedure&.procedure_type&.name || "未登録" %>
+</p>
+
+<p>
+  <strong>進捗：</strong>
+  <%= latest_procedure&.status_label || "未登録" %>
+</p>
+
+<div>
+  <button type="button">更新</button>
+  <button type="button">削除</button>
+  <%= link_to "ダッシュボード", dashboard_path %>
+</div>
