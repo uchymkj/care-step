@@ -47,7 +47,7 @@
 </p>
 
 <div>
-  <button type="button">更新</button>
+  <%= link_to "更新", edit_employee_path(@employee) %>
   <%= button_to "削除", employee_path(@employee), method: :delete %>
   <%= link_to "ダッシュボード", dashboard_path %>
 </div>
