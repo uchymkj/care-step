@@ -1,0 +1,47 @@
+<h1>社員情報編集</h1>
+
+<%= form_with model: @employee do |form| %>
+  <div>
+    <%= form.label :name, "氏名" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :department_id, "所属" %>
+    <%= form.collection_select :department_id, Department.all, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :expected_delivery_date, "出産予定日" %>
+    <%= form.date_field :expected_delivery_date %>
+  </div>
+
+  <div>
+    <%= form.label :delivery_date, "出産日" %>
+    <%= form.date_field :delivery_date %>
+  </div>
+
+  <div>
+    <%= form.label :maternity_leave_start_date, "産前産後休業開始日" %>
+    <%= form.date_field :maternity_leave_start_date %>
+  </div>
+
+  <div>
+    <%= form.label :maternity_leave_end_date, "産前産後休業終了日" %>
+    <%= form.date_field :maternity_leave_end_date %>
+  </div>
+
+  <div>
+    <%= form.label :childcare_leave_start_date, "育児休業開始日" %>
+    <%= form.date_field :childcare_leave_start_date %>
+  </div>
+
+  <div>
+    <%= form.label :childcare_leave_end_date, "育児休業終了日" %>
+    <%= form.date_field :childcare_leave_end_date %>
+  </div>
+
+  <div>
+    <%= form.submit "更新" %>
+  </div>
+<% end %>

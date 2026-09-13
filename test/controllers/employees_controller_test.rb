@@ -97,7 +97,7 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
     assert_select "p", text: /2027-12-02/
     assert_select "p", text: /#{@procedure_type.name}/
     assert_select "p", text: /対応中/
-    assert_select "button", text: "更新"
+    assert_select "a", text: "更新"
     assert_select "button", text: "削除"
     assert_select "a", text: "ダッシュボード"
   end
@@ -121,5 +121,55 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to dashboard_url
+  end
+
+  test "should get edit when logged in" do
+    post login_url, params: {
+      email: @user.email,
+      password: "password"
+    }
+
+    get edit_employee_url(@employee)
+
+    assert_response :success
+    assert_select "h1", text: "社員情報編集"
+    assert_select "input[name='employee[name]'][value='山田 花子']"
+    assert_select "option[selected]", text: @department.name
+    assert_select "input[name='employee[expected_delivery_date]'][value='2026-12-01']"
+    assert_select "input[name='employee[delivery_date]'][value='2026-12-03']"
+  end
+
+  test "should update employee" do
+    post login_url, params: {
+      email: @user.email,
+      password: "password"
+    }
+
+    new_department = departments(:one)
+
+    patch employee_url(@employee), params: {
+      employee: {
+        name: "山田 花子2",
+        department_id: new_department.id,
+        expected_delivery_date: "2026-12-01",
+        delivery_date: "2026-12-03",
+        maternity_leave_start_date: "2026-10-21",
+        maternity_leave_end_date: "2027-01-26",
+        childcare_leave_start_date: "2027-01-27",
+        childcare_leave_end_date: "2027-12-02"
+      }
+    }
+
+    @employee.reload
+
+    assert_redirected_to employee_url(@employee)
+    assert_equal "山田 花子2", @employee.name
+    assert_equal new_department.id, @employee.department_id
+    assert_equal Date.new(2026, 12, 1), @employee.expected_delivery_date
+    assert_equal Date.new(2026, 12, 3), @employee.delivery_date
+    assert_equal Date.new(2026, 10, 21), @employee.maternity_leave_start_date
+    assert_equal Date.new(2027, 1, 26), @employee.maternity_leave_end_date
+    assert_equal Date.new(2027, 1, 27), @employee.childcare_leave_start_date
+    assert_equal Date.new(2027, 12, 2), @employee.childcare_leave_end_date
   end
 end

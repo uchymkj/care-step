@@ -21,6 +21,20 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @employee = Employee.find(params[:id])
+
+    if @employee.update(employee_params)
+      redirect_to @employee
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
@@ -33,7 +47,12 @@ class EmployeesController < ApplicationController
     params.require(:employee).permit(
       :name,
       :department_id,
-      :expected_delivery_date
+      :expected_delivery_date,
+      :delivery_date,
+      :maternity_leave_start_date,
+      :maternity_leave_end_date,
+      :childcare_leave_start_date,
+      :childcare_leave_end_date
     )
   end
 end
