@@ -48,6 +48,7 @@
 
 <div>
   <%= link_to "更新", edit_employee_path(@employee) %>
+  <%= link_to "手続一覧・進捗更新", employee_employee_procedures_path(@employee) %>
   <%= button_to "削除", employee_path(@employee), method: :delete %>
   <%= link_to "ダッシュボード", dashboard_path %>
 </div>

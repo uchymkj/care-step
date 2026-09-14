@@ -1,0 +1,30 @@
+<h1>手続一覧・進捗更新</h1>
+
+<p>
+  <strong>氏名：</strong>
+  <%= @employee.name %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>手続名</th>
+      <th>期限</th>
+      <th>進捗</th>
+      <th>備考</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employee_procedures.each do |employee_procedure| %>
+      <tr>
+        <td><%= employee_procedure.procedure_type.name %></td>
+        <td><%= employee_procedure.deadline || "未登録" %></td>
+        <td><%= employee_procedure.status_label %></td>
+        <td><%= employee_procedure.notes.presence || "未登録" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "社員詳細へ戻る", employee_path(@employee) %>
