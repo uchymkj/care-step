@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get "terms", to: "static_pages#terms"
   get "privacy", to: "static_pages#privacy"
 
-  resources :employees, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :employees, only: [:new, :create, :show, :edit, :update, :destroy] do
+    resources :employee_procedures, only: [:index]
+  end
 end
