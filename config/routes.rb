@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get "privacy", to: "static_pages#privacy"
 
   resources :employees, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :employee_procedures, only: [:index]
+    resources :employee_procedures, only: [:index, :update]
   end
 end

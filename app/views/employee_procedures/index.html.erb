@@ -12,16 +12,36 @@
       <th>期限</th>
       <th>進捗</th>
       <th>備考</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @employee_procedures.each do |employee_procedure| %>
       <tr>
-        <td><%= employee_procedure.procedure_type.name %></td>
-        <td><%= employee_procedure.deadline || "未登録" %></td>
-        <td><%= employee_procedure.status_label %></td>
-        <td><%= employee_procedure.notes.presence || "未登録" %></td>
+        <%= form_with model: [@employee, employee_procedure] do |form| %>
+          <td><%= employee_procedure.procedure_type.name %></td>
+
+          <td>
+            <%= form.date_field :deadline %>
+          </td>
+
+          <td>
+            <%= form.select :status, [
+              ["未着手", "not_started"],
+              ["対応中", "in_progress"],
+              ["完了", "completed"]
+            ] %>
+          </td>
+
+          <td>
+            <%= form.text_field :notes %>
+          </td>
+
+          <td>
+            <%= form.submit "登録・更新" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
