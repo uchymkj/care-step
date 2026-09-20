@@ -23,7 +23,7 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
       name: "育児休業申出"
     )
 
-    EmployeeProcedure.create!(
+    @employee_procedure = EmployeeProcedure.create!(
       employee: @employee,
       procedure_type: @procedure_type,
       deadline: Date.new(2026, 11, 1),
@@ -38,6 +38,18 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index when logged in" do
+    latest_procedure_type = ProcedureType.create!(
+      name: "産前産後休業申出"
+    )
+
+    EmployeeProcedure.create!(
+      employee: @employee,
+      procedure_type: latest_procedure_type,
+      deadline: Date.new(2026, 11, 15),
+      status: :completed,
+      created_at: @employee_procedure.created_at + 1.day
+    )
+
     post login_url, params: {
       email: @user.email,
       password: "password"
@@ -55,7 +67,7 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_select "a", text: @employee.name
     assert_select "td", text: @department.name
     assert_select "td", text: "2026-12-01"
-    assert_select "td", text: @procedure_type.name
-    assert_select "td", text: "対応中"
+    assert_select "td", text: latest_procedure_type.name
+    assert_select "td", text: "完了"
   end
 end
