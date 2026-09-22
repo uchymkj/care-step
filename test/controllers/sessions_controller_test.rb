@@ -7,7 +7,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
       password: "password"
     )
   end
-  
+
   test "should get new" do
     get root_url
     assert_response :success

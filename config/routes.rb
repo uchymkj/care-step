@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root "sessions#new"
-  post "login", to: "sessions#create" 
+  post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   get "dashboard", to: "dashboard#index"
   get "terms", to: "static_pages#terms"
   get "privacy", to: "static_pages#privacy"
 
-  resources :employees, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :employee_procedures, only: [:index, :update]
+  resources :employees, only: %i[new create show edit update destroy] do
+    resources :employee_procedures, only: %i[index update]
   end
 end

@@ -2,9 +2,17 @@ class EmployeesController < ApplicationController
   layout "logged_in"
 
   before_action :require_login
-  
+
+  def show
+    @employee = Employee.find(params[:id])
+  end
+
   def new
     @employee = Employee.new
+  end
+
+  def edit
+    @employee = Employee.find(params[:id])
   end
 
   def create
@@ -15,14 +23,6 @@ class EmployeesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @employee = Employee.find(params[:id])
-  end
-
-  def edit
-    @employee = Employee.find(params[:id])
   end
 
   def update
