@@ -11,7 +11,7 @@ class CreateEmployeeProcedures < ActiveRecord::Migration[7.0]
     end
 
     add_index :employee_procedures,
-              [:employee_id, :procedure_type_id],
+              %i[employee_id procedure_type_id],
               unique: true
   end
 end

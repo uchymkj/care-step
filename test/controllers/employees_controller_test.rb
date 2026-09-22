@@ -32,7 +32,7 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
       procedure_type: @procedure_type,
       deadline: Date.new(2026, 11, 1),
       status: :in_progress
-    )  
+    )
   end
 
   test "should get new when logged in" do

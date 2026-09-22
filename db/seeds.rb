@@ -11,4 +11,3 @@ Department.find_or_create_by!(name: "総務部")
 Department.find_or_create_by!(name: "経理部")
 ProcedureType.find_or_create_by!(name: "産前産後休業申出")
 ProcedureType.find_or_create_by!(name: "育児休業申出")
-
