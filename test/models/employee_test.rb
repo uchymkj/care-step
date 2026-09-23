@@ -14,6 +14,8 @@ class EmployeeTest < ActiveSupport::TestCase
       expected_delivery_date: Date.new(2026, 12, 1)
     )
 
+    employee.employee_procedures.destroy_all
+
     old_procedure_type = ProcedureType.create!(
       name: "産前産後休業申出テスト"
     )
@@ -36,6 +38,7 @@ class EmployeeTest < ActiveSupport::TestCase
       created_at: 1.day.ago
     )
 
+    employee.employee_procedures.reload
     assert_equal latest_procedure, employee.latest_procedure
     assert_not_equal old_procedure, employee.latest_procedure
   end

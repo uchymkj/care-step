@@ -75,6 +75,12 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "山田 花子", employee.name
     assert_equal @department.id, employee.department_id
     assert_equal Date.new(2026, 12, 1), employee.expected_delivery_date
+    assert_equal ProcedureType.count, employee.employee_procedures.count
+    assert_equal(
+      ProcedureType.order(:id).pluck(:id),
+      employee.employee_procedures.order(:procedure_type_id).pluck(:procedure_type_id)
+    )
+    assert employee.employee_procedures.all?(&:not_started?)
   end
 
   test "should get show when logged in" do
@@ -114,8 +120,10 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
       password: "password"
     }
 
+    employee_procedure_count = @employee.employee_procedures.count
+
     assert_difference("Employee.count", -1) do
-      assert_difference("EmployeeProcedure.count", -1) do
+      assert_difference("EmployeeProcedure.count", -employee_procedure_count) do
         delete employee_url(@employee)
       end
     end
