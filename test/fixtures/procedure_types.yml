@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 産前休業手続
+  name: 産前産後休業申出
 
 two:
-  name: 育児休業手続
+  name: 育児休業申出

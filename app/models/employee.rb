@@ -5,7 +5,7 @@ class Employee < ApplicationRecord
   after_create :create_employee_procedures
 
   def latest_procedure
-    employee_procedures.max_by(&:created_at)
+    employee_procedures.find(&:in_progress?)
   end
 
   private
@@ -14,7 +14,7 @@ class Employee < ApplicationRecord
     ProcedureType.find_each do |procedure_type|
       employee_procedures.create!(
         procedure_type: procedure_type,
-        status: :not_started
+        status: procedure_type.name == "産前産後休業申出" ? :in_progress : :not_started
       )
     end
   end
