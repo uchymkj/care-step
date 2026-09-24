@@ -5,7 +5,7 @@ class EmployeeTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  test "最新の手続を取得できる" do
+  test "対応中の手続を最新の手続として取得できる" do
     department = departments(:two)
 
     employee = Employee.create!(
@@ -35,7 +35,7 @@ class EmployeeTest < ActiveSupport::TestCase
       employee: employee,
       procedure_type: latest_procedure_type,
       status: :in_progress,
-      created_at: 1.day.ago
+      created_at: 3.days.ago
     )
 
     employee.employee_procedures.reload

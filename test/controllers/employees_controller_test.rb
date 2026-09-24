@@ -23,13 +23,13 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
       childcare_leave_end_date: Date.new(2027, 12, 2)
     )
 
-    @procedure_type = ProcedureType.create!(
-      name: "育児休業申出"
+    @procedure_type = procedure_types(:two)
+
+    @employee_procedure = @employee.employee_procedures.find_by!(
+      procedure_type: @procedure_type
     )
 
-    EmployeeProcedure.create!(
-      employee: @employee,
-      procedure_type: @procedure_type,
+    @employee_procedure.update!(
       deadline: Date.new(2026, 11, 1),
       status: :in_progress
     )
@@ -80,7 +80,10 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
       ProcedureType.order(:id).pluck(:id),
       employee.employee_procedures.order(:procedure_type_id).pluck(:procedure_type_id)
     )
-    assert employee.employee_procedures.all?(&:not_started?)
+    maternity_procedure = employee.employee_procedures.find { |procedure| procedure.procedure_type.name == "産前産後休業申出" }
+    assert maternity_procedure.in_progress?
+    other_procedures = employee.employee_procedures.reject { |procedure| procedure == maternity_procedure }
+    assert other_procedures.all?(&:not_started?)
   end
 
   test "should get show when logged in" do

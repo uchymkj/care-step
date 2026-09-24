@@ -19,13 +19,13 @@ class EmployeeProceduresControllerTest < ActionDispatch::IntegrationTest
       expected_delivery_date: Date.new(2026, 12, 1)
     )
 
-    @procedure_type = ProcedureType.create!(
-      name: "育児休業申出"
+    @procedure_type = procedure_types(:two)
+
+    @employee_procedure = @employee.employee_procedures.find_by!(
+      procedure_type: @procedure_type
     )
 
-    @employee_procedure = EmployeeProcedure.create!(
-      employee: @employee,
-      procedure_type: @procedure_type,
+    @employee_procedure.update!(
       deadline: Date.new(2026, 11, 1),
       status: :in_progress,
       notes: "申出書を確認する"
