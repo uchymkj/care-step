@@ -43,7 +43,7 @@ class EmployeeProceduresControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", text: "手続一覧・進捗更新"
     assert_select "p", text: /#{@employee.name}/
-    assert_select "td", text: @procedure_type.name
+    assert_select "td", text: /#{@procedure_type.name}/
     assert_select "input[name='employee_procedure[deadline]'][value='2026-11-01']"
     assert_select "option[value='in_progress'][selected]", text: "対応中"
     assert_select "input[name='employee_procedure[notes]'][value='申出書を確認する']"

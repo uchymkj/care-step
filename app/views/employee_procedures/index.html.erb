@@ -19,29 +19,23 @@
   <tbody>
     <% @employee_procedures.each do |employee_procedure| %>
       <tr>
-        <%= form_with model: [@employee, employee_procedure] do |form| %>
-          <td><%= employee_procedure.procedure_type.name %></td>
+        <td colspan="5">
+          <%= form_with model: [@employee, employee_procedure] do |form| %>
+            <%= employee_procedure.procedure_type.name %>
 
-          <td>
             <%= form.date_field :deadline %>
-          </td>
 
-          <td>
             <%= form.select :status, [
               ["未着手", "not_started"],
               ["対応中", "in_progress"],
               ["完了", "completed"]
             ] %>
-          </td>
 
-          <td>
             <%= form.text_field :notes %>
-          </td>
 
-          <td>
             <%= form.submit "登録・更新" %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
