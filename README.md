@@ -129,9 +129,10 @@ MVPで基本的な手続き管理の有用性を検証した上で、対象と�
 | Ruby | 3.1.4 |
 | Ruby on Rails | 7.0.10 |
 | MySQL | 8.0 |
-| HTML / CSS / JavaScript | 未定 |
-| デプロイ | 未定 |
-| その他ライブラリ | 未定 |
+| フロントエンド | HTML / CSS / JavaScript（Hotwire） |
+| 開発環境 | Docker |
+| CI | GitHub Actions |
+| デプロイ | Railway |
 
 ### 技術選定理由
 
