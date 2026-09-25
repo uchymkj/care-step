@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_action :require_login
 
   def show
-    @employee = Employee.find(params[:id])
+    @employee = Employee.includes(current_procedure: :procedure_type).find(params[:id])
   end
 
   def new

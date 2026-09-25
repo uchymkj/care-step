@@ -4,6 +4,6 @@ class DashboardController < ApplicationController
   before_action :require_login
 
   def index
-    @employees = Employee.includes(:department, employee_procedures: :procedure_type)
+    @employees = Employee.includes(:department, current_procedure: :procedure_type)
   end
 end

@@ -1,11 +1,15 @@
 class Employee < ApplicationRecord
   belongs_to :department
   has_many :employee_procedures, dependent: :destroy
+  has_one :current_procedure,
+          -> { where(status: :in_progress) },
+          class_name: "EmployeeProcedure",
+          inverse_of: :employee
 
   after_create :create_employee_procedures
 
   def latest_procedure
-    employee_procedures.find(&:in_progress?)
+    current_procedure
   end
 
   private
