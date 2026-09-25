@@ -13,7 +13,7 @@ class EmployeeProceduresController < ApplicationController
     @employee_procedure = @employee.employee_procedures.find(params[:id])
 
     if @employee_procedure.update(employee_procedure_params)
-      redirect_to employee_employee_procedures_path(@employee)
+      redirect_to employee_employee_procedures_path(@employee), notice: "手続情報を更新しました。"
     else
       @employee_procedures = @employee.employee_procedures.includes(:procedure_type)
       render :index, status: :unprocessable_entity
