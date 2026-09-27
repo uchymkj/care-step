@@ -8,6 +8,8 @@ class EmployeeProcedure < ApplicationRecord
     completed: 2
   }
 
+  validates :status, presence: true
+
   def status_label
     {
       "not_started" => "未着手",

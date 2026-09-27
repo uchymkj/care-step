@@ -6,6 +6,9 @@ class Employee < ApplicationRecord
           class_name: "EmployeeProcedure",
           inverse_of: :employee
 
+  validates :name, presence: true
+  validates :expected_delivery_date, presence: true
+
   after_create :create_employee_procedures
 
   def latest_procedure
