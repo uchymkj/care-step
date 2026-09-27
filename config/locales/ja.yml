@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      employee:
+        name: "氏名"
+        expected_delivery_date: "出産予定日"
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "を入力してください"

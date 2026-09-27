@@ -1,6 +1,14 @@
 require "test_helper"
 
 class EmployeeProcedureTest < ActiveSupport::TestCase
+  test "進捗が空欄の場合は無効である" do
+    employee_procedure = employee_procedures(:one)
+    employee_procedure.status = nil
+
+    assert_not employee_procedure.valid?
+    assert_includes employee_procedure.errors[:status], "を入力してください"
+  end
+
   test "進捗を未着手として設定できる" do
     employee_procedure = EmployeeProcedure.new(status: :not_started)
 

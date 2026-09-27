@@ -5,6 +5,22 @@ class EmployeeTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+  test "氏名が空欄の場合は無効である" do
+    employee = employees(:one)
+    employee.name = nil
+
+    assert_not employee.valid?
+    assert_includes employee.errors[:name], "を入力してください"
+  end
+
+  test "出産予定日が空欄の場合は無効である" do
+    employee = employees(:one)
+    employee.expected_delivery_date = nil
+
+    assert_not employee.valid?
+    assert_includes employee.errors[:expected_delivery_date], "を入力してください"
+  end
+
   test "対応中の手続を最新の手続として取得できる" do
     department = departments(:two)
 
